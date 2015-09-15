@@ -29,4 +29,5 @@ Usage: docco [options] FILES
     -e, --extension [ext]  use the given file extension for all inputs
     -L, --languages [file] use a custom languages.json
     -m, --marked [file]    use custom marked options
-    -i, --ignore [file]    ignore unsupported languages
+    -k, --keepext [file]   keep original file extension
+    -i, --ignore [file]    ignore unsupported languages 
