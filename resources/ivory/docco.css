@@ -108,6 +108,11 @@ code {
   margin-top: 0.25rem;
 }
 
+.annotation code {
+  clear: both;
+  display: inline-block;
+}
+
 .pilwrap {
   display: none;
 }
