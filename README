@@ -17,7 +17,7 @@ documentation generator. For more information, see:
 Installation
 ------------
 
-  sudo npm install -g gerhobbelt/docco
+  npm install -g @azu/docco
 
 
 Usage
