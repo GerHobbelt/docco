@@ -5,13 +5,12 @@ html {
 
 html,
 body {
-  height:100%;
+  height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
   font: 16px/1 sans-serif;
 }
 
@@ -19,9 +18,15 @@ a {
   color: inherit;
 }
 
-b,
-strong {
-  font-weight: bold;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  word-wrap: break-word;
+  text-transform: uppercase;
 }
 
 ul,
@@ -35,28 +40,19 @@ p {
   margin: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  color: #222;
-  text-transform: uppercase;
-  font-family: normal 16px/1 arial, sans-serif;
-}
-
 tt,
 pre,
 code {
   margin: 0;
   padding: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
   font: 0.875em/1.5 Menlo, Monaco, Consolas, "Lucida Console", monospace;
 }
 
 .jumper {
-  font-size: 0.75rem;
+  max-width: 40rem;
+  font-size: 0.75em;
   padding: 1rem 0.5rem;
   box-sizing: border-box;
 }
@@ -79,23 +75,11 @@ code {
   text-decoration: underline;
 }
 
-.section {
-  display: block;
-}
-
 .title {
   margin: 1rem 0;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
-
-.content {
-  width: 100%;
-  padding: 1rem;
-  overflow-x: auto;
-  color: rgb(211, 208, 200);
-  background: rgb(45, 45, 45);
 }
 
 .content,
@@ -104,17 +88,36 @@ code {
   box-sizing: border-box;
 }
 
+.content {
+  color: #d3d3d3;
+  overflow-x: auto;
+  background: #2d2d2d;
+}
+
+.annotation {
+  max-width: 40rem;
+  position: relative;
+}
+
+.annotation h1 {
+  margin-bottom: 0.125rem;
+}
+
 .annotation p {
-  margin-top: 0.25rem;
+  line-height: 1.25;
 }
 
-.annotation code {
-  clear: both;
-  display: inline-block;
-}
+@media only screen and (max-width: 799px) {
+  .pilwrap {
+    display: none;
+  }
 
-.pilwrap {
-  display: none;
+  .highlight tt,
+  .highlight pre,
+  .highlight code {
+    white-space: pre;
+    word-wrap: normal;
+  }
 }
 
 @media only screen and (min-width: 400px) {
@@ -125,27 +128,30 @@ code {
 }
 
 @media only screen and (min-width: 800px) {
-  body {
-    background: rgb(45, 45, 45);
+  .jumper {
+    width: 40%;
+    text-align: right;
+    padding: 1rem 1.5rem 0;
   }
 
-  .background {
+  .sections {
+    padding-top: 0.75rem;
+  }
+
+  .sections::before {
     top: 0;
-    width: 40%;
+    right: 0;
+    bottom: 0;
+    width: 60%;
     z-index: -1;
-    height: 100vh;
+    content: "";
+    display: block;
     position: fixed;
-    max-width: 40rem;
-    background: #fff;
+    background: #2d2d2d;
   }
 
   .section {
     overflow: hidden;
-  }
-
-  .content {
-    width: 60%;
-    overflow: visible;
   }
 
   .content,
@@ -155,11 +161,14 @@ code {
     display: inline-block;
   }
 
+  .content {
+    width: 60%;
+    overflow: visible;
+  }
+
   .annotation {
     width: 40%;
-    max-width: 40rem;
     text-align: right;
-    position: relative;
     padding-right: 2rem;
   }
 
@@ -168,7 +177,6 @@ code {
     right: 0;
     bottom: 0;
     width: 2rem;
-    display: block;
     position: absolute;
   }
 
@@ -176,9 +184,8 @@ code {
     top: 50%;
     left: 50%;
     opacity: 0;
-    display: block;
-    font-size: 1rem;
     padding: 1rem;
+    display: block;
     position: absolute;
     text-decoration: none;
     transform: translate(-50%, -50%);
@@ -272,10 +279,10 @@ code {
 }
 
 .hljs {
-  display: block;
-  background: #2d2d2d;
   color: #d3d0c8;
+  display: block;
   padding: 0.5em;
+  background: #2d2d2d;
 }
 
 .coffeescript .javascript,
