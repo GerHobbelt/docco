@@ -4,31 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title><%= title %></title>
-    <link rel="stylesheet" media="all" href="<%= css %>" />
+    <link rel="stylesheet" media="all" href="<%= css %>">
   </head>
 
   <body>
-    <div class="background"></div>
-
     <% if (sources.length > 1) { %>
     <div class="jumper">
       <strong>Jump To</strong>
       <ul>
-
         <% for (var i = 0, l = sources.length; i < l; i++) { %>
         <% var source = sources[i]; %>
         <li>
-          <a class="source" href="<%= path.basename(destination(source)) %>"><%= path.basename(source) %></a>
+          <a class="source" href="<%= path.basename(destination(source)) %>">
+            <%= path.basename(source) %>
+          </a>
         </li>
         <% } %>
-
       </ul>
     </div>
     <% } %>
 
     <div class="sections">
       <ul>
-
         <% if (!hasTitle) { %>
         <li class="section">
           <div class="annotation">
@@ -45,6 +42,7 @@
             <div class="pilwrap<%= heading ? ' for-' + heading[1] : '' %>">
               <a class="pilcrow" href="#section-<%= i + 1 %>">&#182;</a>
             </div>
+
             <%= section.docsHtml %>
           </div>
 
@@ -53,7 +51,6 @@
           <% } %>
         </li>
         <% } %>
-
       </ul>
     </div>
   </body>
