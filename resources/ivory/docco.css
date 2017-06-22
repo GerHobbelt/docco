@@ -16,6 +16,7 @@ body {
 
 a {
   color: inherit;
+  word-wrap: break-word;
 }
 
 h1,
