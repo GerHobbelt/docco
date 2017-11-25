@@ -15,7 +15,7 @@
       "email": "hellyna@hellyna.com"
     }
   ],
-  "version": "0.7.2-5",
+  "version": "0.7.2-6",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -34,13 +34,15 @@
   "devDependencies": {
     "coffee": ">=4.1.0",
     "coffee-script": ">=1.12.7",
-    "rimraf": "^2.6.2"
+    "rimraf": ">=2.6.2"
   },
   "main": "./docco",
   "bin": {
     "docco": "./bin/docco"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "build": "make",
+    "pub": "npm publish --access public"
   }
 }

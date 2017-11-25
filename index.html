@@ -22,19 +22,7 @@
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
               <h1 id="docco">Docco</h1>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p><strong>Docco</strong> is a quick-and-dirty documentation generator, written in
+<p><strong>Docco</strong> is a quick-and-dirty documentation generator, written in
 <a href="http://coffeescript.org/#literate">Literate CoffeeScript</a>.
 It produces an HTML document that displays your comments intermingled with your
 code. All prose is passed through
@@ -52,7 +40,7 @@ This page is the result of running Docco against its own
 source files, with a menu linking to the other pages, saving the whole mess
 into a <code>docs</code> folder (configurable).</p>
 <p>The <a href="http://github.com/jashkenas/docco">Docco source</a> is available on GitHub,
-and is released under the <a href="http://opensource.org/licenses/MIT">MIT license</a>.</p>
+and is released under the <a href="http://lillicense.org/v1.html">Lil License</a>.</p>
 <p>Docco can be used to process code written in any programming language. If it
 doesn’t handle your favorite yet, feel free to
 <a href="https://github.com/jashkenas/docco/blob/master/resources/languages.json">add it to the list</a>.
@@ -63,19 +51,7 @@ language is also supported — just tack an <code>.md</code> extension on the en
 <p>By default only single-line comments are processed, block comments may be included
 by passing the <code>-b</code> flag to Docco.</p>
 <h2 id="partners-in-crime-">Partners in Crime:</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <ul>
+<ul>
 <li><p>If <strong>Node.js</strong> doesn’t run on your platform, or you’d prefer a more
 convenient package, get <a href="http://github.com/rtomayko">Ryan Tomayko</a>‘s
 <a href="http://rtomayko.github.io/rocco/rocco.html">Rocco</a>, the <strong>Ruby</strong> port that’s
@@ -113,19 +89,7 @@ and aims to gracefully handle large projects with complex hierarchies of code.</
 </ul>
 <p>Note that not all ports will support all Docco features … yet.</p>
 <h2 id="main-documentation-generation-functions">Main Documentation Generation Functions</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>Generate the documentation for our configured source file by copying over static
+<p>Generate the documentation for our configured source file by copying over static
 assets, reading all the source files in, splitting them up into prose+code
 sections, highlighting each file in the appropriate language, printing them
 out in an HTML template, and writing plain code files where instructed.</p>
@@ -137,25 +101,25 @@ out in an HTML template, and writing plain code files where instructed.</p>
   source_infos = []
 
   fs.mkdirsSync config.output
-  fs.mkdirsSync config.source <span class="hljs-keyword">if</span> config.source
-<span class="hljs-function">
+  fs.mkdirsSync config.source <span class="hljs-keyword">if</span> config.source<span class="hljs-function">
+
   <span class="hljs-title">callback</span> = <span class="hljs-params">(error)</span> -&gt;</span>
     <span class="hljs-keyword">if</span> error
       user_callback error <span class="hljs-keyword">if</span> user_callback 
       <span class="hljs-keyword">throw</span> error
     <span class="hljs-keyword">if</span> user_callback
-      user_callback <span class="hljs-literal">null</span>, { source_infos, config }
-<span class="hljs-function">
+      user_callback <span class="hljs-literal">null</span>, { source_infos, config }<span class="hljs-function">
+
   <span class="hljs-title">copyAsset</span>  = <span class="hljs-params">(file, callback)</span> -&gt;</span>
     <span class="hljs-keyword">return</span> callback() <span class="hljs-keyword">unless</span> fs.existsSync file
-    fs.copy file, path.join(config.output, path.basename(file)), callback
-<span class="hljs-function">  <span class="hljs-title">complete</span>   = -&gt;</span>
+    fs.copy file, path.join(config.output, path.basename(file)), callback<span class="hljs-function">
+  <span class="hljs-title">complete</span>   = -&gt;</span>
     copyAsset config.css, <span class="hljs-function"><span class="hljs-params">(error)</span> -&gt;</span>
       <span class="hljs-keyword">return</span> callback error <span class="hljs-keyword">if</span> error
       <span class="hljs-keyword">return</span> copyAsset config.public, callback
 
-  files = config.sources.slice()
-<span class="hljs-function">
+  files = config.sources.slice()<span class="hljs-function">
+
   <span class="hljs-title">nextFile</span> = -&gt;</span>
     source = files.shift()
     fs.readFile source, <span class="hljs-function"><span class="hljs-params">(error, buffer)</span> -&gt;</span>
@@ -168,11 +132,11 @@ out in an HTML template, and writing plain code files where instructed.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-2">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <p>The <strong>title</strong> of the file is either the first heading in the prose, or the
 name of the source file.</p>
@@ -197,11 +161,11 @@ name of the source file.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>When we have finished all preparations (such as extracting a title for each file),
 we produce all output files.</p>
@@ -220,11 +184,11 @@ needs to produce a TOC with each file.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Start processing all sources and producing the corresponding files for each:</p>
 
@@ -235,11 +199,11 @@ needs to produce a TOC with each file.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Given a string of source code, <strong>parse</strong> out each block of prose and the code that
 follows it — by detecting which is which, line by line — and then create an
@@ -255,8 +219,8 @@ individual <strong>section</strong> for it. Each section is an object with <code
   hasCode  = docsText = codeText = <span class="hljs-string">''</span>
   param    = <span class="hljs-string">''</span>
   in_block = <span class="hljs-number">0</span>
-  ignore_this_block = <span class="hljs-number">0</span>
-<span class="hljs-function">
+  ignore_this_block = <span class="hljs-number">0</span><span class="hljs-function">
+
   <span class="hljs-title">save</span> = -&gt;</span>
     sections.push {docsText, codeText}
     hasCode = docsText = codeText = <span class="hljs-string">''</span></pre></div></div>
@@ -264,11 +228,11 @@ individual <strong>section</strong> for it. Each section is an object with <code
         </li>
         
         
-        <li id="section-9">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Our quick-and-dirty implementation of the literate programming style. Simply
 invert the prose and code relationship on a per-line basis, and then continue as
@@ -292,11 +256,11 @@ normal below.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Iterate over the source lines, and separate out single/block
 comments from code chunks.</p>
@@ -312,11 +276,11 @@ comments from code chunks.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>If we’re not in a block comment, and find a match for the start
 of one, eat the tokens, and note that we’re now in a block.</p>
@@ -325,6 +289,56 @@ of one, eat the tokens, and note that we’re now in a block.</p>
             
             <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> config.blocks <span class="hljs-keyword">and</span> lang.blocks <span class="hljs-keyword">and</span> line.match(lang.commentEnter)
       line = line.replace(lang.commentEnter, <span class="hljs-string">''</span>)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Make sure this is a comment that we actually want to process; if not, treat it as code</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      in_block = <span class="hljs-number">1</span>
+      <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
+        ignore_this_block = <span class="hljs-number">1</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Process the line, marking it as docs if we’re in a block comment,
+or we find a single-line comment marker.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    single = (<span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> lang.commentMatcher <span class="hljs-keyword">and</span> line.match(lang.commentMatcher) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> line.match(lang.commentFilter))</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>If there’s a single comment, and we’re not in a block, eat the
+comment token.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> single
+      line = line.replace(lang.commentMatcher, <span class="hljs-string">''</span>)</pre></div></div>
             
         </li>
         
@@ -339,8 +353,7 @@ of one, eat the tokens, and note that we’re now in a block.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      in_block = <span class="hljs-number">1</span>
-      <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
         ignore_this_block = <span class="hljs-number">1</span></pre></div></div>
             
         </li>
@@ -352,55 +365,6 @@ of one, eat the tokens, and note that we’re now in a block.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>Process the line, marking it as docs if we’re in a block comment,
-or we find a single-line comment marker.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    single = (<span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> lang.commentMatcher <span class="hljs-keyword">and</span> line.match(lang.commentMatcher) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> line.match(lang.commentFilter))</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>If there’s a single comment, and we’re not in a block, eat the
-comment token.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> single
-      line = line.replace(lang.commentMatcher, <span class="hljs-string">''</span>)</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <p>Make sure this is a comment that we actually want to process; if not, treat it as code</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
-        ignore_this_block = <span class="hljs-number">1</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
-              </div>
               <p>Prepare the line further when it is (part of) a comment line.</p>
 
             </div>
@@ -410,11 +374,11 @@ comment token.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>If we’re in a block comment and we find the end of it in the line, eat
 the end token, and note that we’re no longer in the block.</p>
@@ -428,11 +392,11 @@ the end token, and note that we’re no longer in the block.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>If we’re in a block comment and are processing comment line 2 or further, eat the
 optional comment prefix (for C style comments, that would generally be
@@ -446,11 +410,11 @@ a single ‘*’, for example).</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>If we happen upon a JavaDoc <code>@param</code> parameter, then process that item.</p>
 
@@ -466,11 +430,11 @@ a single ‘*’, for example).</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>If we have code text, and we’re entering a comment, store off
 the current docs and code, then start a new section.</p>
@@ -494,11 +458,11 @@ the current docs and code, then start a new section.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Reset <code>in_block</code> when we have reached the end of the comment block.</p>
 
@@ -510,11 +474,11 @@ the current docs and code, then start a new section.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Reset <code>ignore_this_block</code> when we have reached the end of the comment block or single comment line.</p>
 
@@ -526,11 +490,11 @@ the current docs and code, then start a new section.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Save the final section, if any, and return the sections array.</p>
 
@@ -543,11 +507,11 @@ the current docs and code, then start a new section.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>To <strong>format</strong> and highlight the now-parsed sections of code, we use <strong>Highlight.js</strong>
 over stdio, and run the text of their corresponding comments through
@@ -561,11 +525,11 @@ over stdio, and run the text of their corresponding comments through
         </li>
         
         
-        <li id="section-25">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Pass any user defined options to Marked if specified via command line option,
 otherwise revert use the default configuration.</p>
@@ -579,11 +543,11 @@ otherwise revert use the default configuration.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Tell Marked how to highlight code blocks within comments, treating that code
 as either the language specified in the code block or the language of the file
@@ -605,11 +569,11 @@ if not specified.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Also instruct Marked to run a preliminary scan of all the chunks first, where we want to
 collect all link references. Only in the second run will we then require Marked to produce
@@ -629,11 +593,11 @@ of the input document.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Process each chunk (phase 1):</p>
 <ul>
@@ -677,11 +641,11 @@ of the input document.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Process each chunk (phase 2):</p>
 <ul>
@@ -709,11 +673,11 @@ of the input document.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Once all of the code has finished highlighting, we can <strong>write</strong> the resulting
 documentation file by passing the completed HTML sections into the template,
@@ -721,18 +685,18 @@ and rendering it to the specified output path.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">write</span> = <span class="hljs-params">(source, title_idx, source_infos, config)</span> -&gt;</span>
-<span class="hljs-function">
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">write</span> = <span class="hljs-params">(source, title_idx, source_infos, config)</span> -&gt;</span><span class="hljs-function">
+
   <span class="hljs-title">destination</span> = <span class="hljs-params">(file)</span> -&gt;</span>
     make_destination config.output, config.separator, file, <span class="hljs-string">'.html'</span>, config
 
-  destfile = destination source
-<span class="hljs-function">
+  destfile = destination source<span class="hljs-function">
+
   <span class="hljs-title">relative</span> = <span class="hljs-params">(srcfile)</span> -&gt;</span>
     to = path.dirname(path.resolve(srcfile))
     dstfile = destination srcfile
-    from = path.dirname(path.resolve(dstfile))
-    path.join(path.relative(from, to), path.basename(srcfile))
+    <span class="hljs-keyword">from</span> = path.dirname(path.resolve(dstfile))
+    path.join(path.relative(<span class="hljs-keyword">from</span>, to), path.basename(srcfile))
 
   css = <span class="hljs-keyword">if</span> config.css <span class="hljs-keyword">then</span> relative path.join(config.output, path.basename(config.css)) <span class="hljs-keyword">else</span> <span class="hljs-literal">null</span>
 
@@ -758,11 +722,11 @@ and rendering it to the specified output path.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Print out the consolidated code sections parsed from the source file in to another
 file. No documentation will be included in the new file.</p>
@@ -786,26 +750,14 @@ file. No documentation will be included in the new file.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <h2 id="helper-functions">Helper Functions</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-33">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
-              </div>
-              <p>To help us produce decent file names and paths for all inputs, we define a few helper functions:</p>
+<p>To help us produce decent file names and paths for all inputs, we define a few helper functions:</p>
 <p>It should not matter if we are running on Windows, Unix or some other platform: we unify all paths
 to a single UNIXy format which can be processed easily everywhere (Windows accepts both native and
 UNIX path separators).</p>
@@ -818,11 +770,11 @@ UNIX path separators).</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>We construct a suitable filename/path for each document by prepending it with the specified
 relative path while using the separator specified on the command line. (The default separator (‘-‘
@@ -837,34 +789,22 @@ dash) is used to flatten the directory tree when we process a directory tree all
   nameParts.shift() <span class="hljs-keyword">while</span> nameParts[<span class="hljs-number">0</span>] <span class="hljs-keyword">is</span> <span class="hljs-string">''</span> <span class="hljs-keyword">or</span> nameParts[<span class="hljs-number">0</span>] <span class="hljs-keyword">is</span> <span class="hljs-string">'.'</span> <span class="hljs-keyword">or</span> nameParts[<span class="hljs-number">0</span>] <span class="hljs-keyword">is</span> <span class="hljs-string">'..'</span>
   nameParts.push(path.basename(file, path.extname(file)))
 
-  nameParts.join(separator) + extension
-<span class="hljs-function">
+  nameParts.join(separator) + extension<span class="hljs-function">
+
 <span class="hljs-title">make_destination</span> = <span class="hljs-params">(basepath, separator, file, extension, config)</span> -&gt;</span>
   path.join basepath, qualifiedName(file, separator, extension, config)</pre></div></div>
             
         </li>
         
         
-        <li id="section-35">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h2 id="configuration">Configuration</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-36">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
-              </div>
-              <p>Default configuration <strong>options</strong>. All of these may be extended by
+<p>Default configuration <strong>options</strong>. All of these may be extended by
 user-specified options.</p>
 
             </div>
@@ -900,11 +840,11 @@ user-specified options.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p><strong>Configure</strong> this particular run of Docco. We might use a passed-in external
 template, one of the built-in <strong>layouts</strong>, or an external <strong>layout</strong>. We only attempt to process
@@ -920,11 +860,11 @@ source files for languages for which we have definitions.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Determine what the indent should be if the user has supplied a custom tab-size
 on the command line.</p>
@@ -937,11 +877,11 @@ on the command line.</p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>The user is able to override the layout file used with the <code>--template</code> parameter.
 In this case, it is also necessary to explicitly specify a stylesheet file.
@@ -964,11 +904,11 @@ is only copied for the latter.</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>When the user specifies custom Marked options in a (JSON-formatted) configuration file,
 mix those options which our defaults such that each default option remains active when it has
@@ -991,26 +931,14 @@ not been explicitly overridden by the user.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <h2 id="helpers-initial-setup">Helpers &amp; Initial Setup</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-42">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
-              </div>
-              <p>Require our external dependencies.</p>
+<p>Require our external dependencies.</p>
 
             </div>
             
@@ -1024,11 +952,11 @@ highlightjs = <span class="hljs-built_in">require</span> <span class="hljs-strin
         </li>
         
         
-        <li id="section-43">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>Languages are stored in JSON in the file <code>resources/languages.json</code>.
 Each item maps the file extension to the name of the language and the
@@ -1042,11 +970,11 @@ language to Docco, just add it to the file.</p>
         </li>
         
         
-        <li id="section-44">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Build out the appropriate matchers and delimiters for each language.</p>
 
@@ -1058,11 +986,11 @@ language to Docco, just add it to the file.</p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Does the line begin with a comment?</p>
 
@@ -1074,11 +1002,11 @@ language to Docco, just add it to the file.</p>
         </li>
         
         
-        <li id="section-46">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Support block comment parsing?</p>
 
@@ -1096,11 +1024,11 @@ language to Docco, just add it to the file.</p>
         </li>
         
         
-        <li id="section-47">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-47">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Ignore <a href="http://en.wikipedia.org/wiki/Shebang_%28Unix%29">hashbangs</a> and interpolations…</p>
 
@@ -1111,11 +1039,11 @@ language to Docco, just add it to the file.</p>
         </li>
         
         
-        <li id="section-48">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-48">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>We ignore any comments which start with a colon ‘:’ - these will be included in the code as is.</p>
 
@@ -1129,11 +1057,11 @@ languages = buildMatchers languages</pre></div></div>
         </li>
         
         
-        <li id="section-49">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-49">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>A function to get the current language we’re documenting, based on the
 file extension. Detect and tag “literate” <code>.ext.md</code> variants.</p>
@@ -1155,11 +1083,11 @@ file extension. Detect and tag “literate” <code>.ext.md</code> variants.</p>
         </li>
         
         
-        <li id="section-50">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-50">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Keep it DRY. Extract the docco <strong>version</strong> from <code>package.json</code></p>
 
@@ -1170,26 +1098,14 @@ file extension. Detect and tag “literate” <code>.ext.md</code> variants.</p>
         </li>
         
         
-        <li id="section-51">
+        <li id="section-45">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-51">&#182;</a>
+                <a class="pilcrow" href="#section-45">&#182;</a>
               </div>
               <h2 id="command-line-interface">Command Line Interface</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-52">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-52">&#182;</a>
-              </div>
-              <p>Finally, let’s define the interface to run Docco from the command line.
+<p>Finally, let’s define the interface to run Docco from the command line.
 Parse options using <a href="https://github.com/visionmedia/commander.js">Commander</a>.</p>
 
             </div>
@@ -1221,26 +1137,14 @@ Parse options using <a href="https://github.com/visionmedia/commander.js">Comman
         </li>
         
         
-        <li id="section-53">
+        <li id="section-46">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-53">&#182;</a>
+                <a class="pilcrow" href="#section-46">&#182;</a>
               </div>
               <h2 id="public-api">Public API</h2>
 
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-54">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-54">&#182;</a>
-              </div>
-              
             </div>
             
             <div class="content"><div class='highlight'><pre>Docco = <span class="hljs-built_in">module</span>.exports = {run, <span class="hljs-built_in">document</span>, parse, format, configure, version}</pre></div></div>
