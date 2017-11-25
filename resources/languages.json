@@ -21,6 +21,7 @@
   ".css": {"name" : "css", "symbol" : "", "enter": "^\\s*\\/\\*+(\\s+|$)", "exit": "\\s*\\*+\\/\\s*$", "next": "^\\s*\\*+\\s?" },
   ".d": {"name": "d", "symbol": "//"},
   ".dtx": {"name": "TeX", "symbol": "%" },
+  ".ejs": {"name" : "javascript", "symbol" : "//", "enter": "^\\s*\\/\\*+(\\s+|$)", "exit": "\\s*\\*+\\/\\s*$", "next": "^\\s*\\*+\\s?", "param": "@([a-zA-Z]+)" },
   ".dust": {"name": "dust", "symbol": "!"},
   ".erl": {"name" : "erlang", "symbol" : "%"},
   ".es6": {"name" : "javascript", "symbol" : "//", "enter": "^\\s*\\/\\*+(\\s+|$)", "exit": "\\s*\\*+\\/\\s*$", "next": "^\\s*\\*+\\s?", "param": "@([a-zA-Z]+)" },
