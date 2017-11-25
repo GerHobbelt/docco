@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta http-equiv="content-type" content="text/html">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="public/stylesheets/normalize.css" media="all" />
+    <link rel="stylesheet" href="public/stylesheets/style.css" />
+    <link rel="stylesheet" href="public/stylesheets/hljs.min.css" />
+    <link rel="stylesheet" href="public/stylesheets/monokai.css" />
+    <link rel="stylesheet" href="public/stylesheets/custom.css" />
+  </head>
+  <body>
+    <a href="#top" name="top"></a>
+    <% if (sources.length > 1) { %>
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+            <div id="jump_page_wrapper">
+              <div id="jump_page">
+                <% for (var i = 0, l = sources.length; i < l; i++) { %>
+                  <% var source = sources[i]; %>
+                  <% var title = titles[i]; %>
+                  <a class="source" href="<%= relative(destination(source)) %>">
+                    <%= title %>
+                  </a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% } %>
+
+    <ul class="nav"></ul>
+
+    <div class="container">
+      <% if (hasTitle) { %>
+        <% var section = sections.shift(); %>
+        <%= section.docsHtml %>
+        <% if (!(/^\s*$/).test(section.codeText)) { %>
+          <%= section.codeHtml %>
+        <% } else { %>
+        <% } %>
+      <% } else { %>
+        <h1> <%= title %> </h1>
+      <% } %>
+
+      <% for (var i = 0, l = sections.length; i < l; i++) { %>
+        <% var section = sections[i]; %>
+        <%= section.docsHtml %>
+        <% if (!(/^\s*$/).test(section.codeText)) { %>
+          <%= section.codeHtml %>
+        <% } %>
+      <% } %>
+    </div>
+
+    <script src="public/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+       function transliterate(word) {
+         var answer = "";
+         var a = {}
+
+         a["Ё"]="YO";a["Й"]="I";a["Ц"]="TS";a["У"]="U";a["К"]="K";a["Е"]="E";a["Н"]="N";a["Г"]="G";a["Ш"]="SH";a["Щ"]="SCH";a["З"]="Z";a["Х"]="H";a["Ъ"]="'";
+         a["ё"]="yo";a["й"]="i";a["ц"]="ts";a["у"]="u";a["к"]="k";a["е"]="e";a["н"]="n";a["г"]="g";a["ш"]="sh";a["щ"]="sch";a["з"]="z";a["х"]="h";a["ъ"]="'";
+         a["Ф"]="F";a["Ы"]="I";a["В"]="V";a["А"]="a";a["П"]="P";a["Р"]="R";a["О"]="O";a["Л"]="L";a["Д"]="D";a["Ж"]="ZH";a["Э"]="E";
+         a["ф"]="f";a["ы"]="i";a["в"]="v";a["а"]="a";a["п"]="p";a["р"]="r";a["о"]="o";a["л"]="l";a["д"]="d";a["ж"]="zh";a["э"]="e";
+         a["Я"]="Ya";a["Ч"]="CH";a["С"]="S";a["М"]="M";a["И"]="I";a["Т"]="T";a["Ь"]="'";a["Б"]="B";a["Ю"]="YU";
+         a["я"]="ya";a["ч"]="ch";a["с"]="s";a["м"]="m";a["и"]="i";a["т"]="t";a["ь"]="'";a["б"]="b";a["ю"]="yu";
+
+         for (i = 0; i < word.length; ++i) {
+           answer += a[word[i]] === undefined ? word[i] : a[word[i]];
+         }
+         return answer;
+       }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var headers = [].slice.call( document.querySelectorAll('h1') ).forEach(
+          function(head) {
+            var name = transliterate(head.textContent).replace(/\s/g, '_');
+
+            var tag_a = document.createElement('a');
+            tag_a.name = name;
+            tag_a.href = '#' + name;
+            tag_a.textContent = name;
+            tag_a.className = "anchor_link"
+            head.parentNode.insertBefore(tag_a, head);
+
+            var div_top = document.createElement('div');
+            div_top.className = "to_top_div";
+            var tag_top = document.createElement('a');
+            tag_top.href = "#top";
+            div_top.append(tag_top);
+            head.parentNode.insertBefore(div_top, head.nextSibling);
+
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.textContent = head.textContent;
+            a.href = "#" + name;
+            li.append(a);
+            document.querySelector('ul.nav').append(li);
+          }
+        );
+      });
+    </script>
+  </body>
+</html>
