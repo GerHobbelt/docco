@@ -230,7 +230,7 @@
           }
           code = section.codeText;
         }
-        section.codeHtml = "<pre>" + '<code class="hljs ' + language.name + '">' + code + "</code></pre>";
+        section.codeHtml = "<div class='highlight'><pre>" + code + "</pre></div>";
         doc = section.docsText;
         section.docsText = doc = doc.replace(/\s+$/, '');
         marked(doc);

@@ -1,27 +1,25 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-  <title>Docco</title>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <link rel="stylesheet" media="all" href="resources/parallel/docco.css" />
-</head>
-<body>
-  <div id="container">
-    <div id="background"></div>
+  <head>
+    <title>Docco</title>
+    <meta http-equiv="content-type" content="text/html">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="resources/custom/public/stylesheets/normalize.css" media="all" />
+    <link rel="stylesheet" href="resources/custom/public/stylesheets/style.css" />
+    <link rel="stylesheet" href="resources/custom/public/stylesheets/hljs.min.css" />
+    <link rel="stylesheet" href="resources/custom/public/stylesheets/monokai.css" />
+    <link rel="stylesheet" href="resources/custom/public/stylesheets/custom.css" />
+  </head>
+  <body>
+    <a href="#top" name="top"></a>
     
-    <ul class="sections">
+
+    <ul class="nav"></ul>
+
+    <div class="container">
+      
         
-        
-        
-        <li id="section-1">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-1">&#182;</a>
-              </div>
-              <h1 id="docco">Docco</h1>
+        <h1 id="docco">Docco</h1>
 <p><strong>Docco</strong> is a quick-and-dirty documentation generator, written in
 <a href="http://coffeescript.org/#literate">Literate CoffeeScript</a>.
 It produces an HTML document that displays your comments intermingled with your
@@ -94,9 +92,8 @@ assets, reading all the source files in, splitting them up into prose+code
 sections, highlighting each file in the appropriate language, printing them
 out in an HTML template, and writing plain code files where instructed.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">document</span> = <span class="hljs-params">(options = {}, user_callback)</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">document</span> = <span class="hljs-params">(options = {}, user_callback)</span> -&gt;</span>
   config = configure options
   source_infos = []
 
@@ -127,23 +124,17 @@ out in an HTML template, and writing plain code files where instructed.</p>
 
       code = buffer.toString()
       sections = parse source, code, config
-      format source, sections, config</pre></div></div>
-            
-        </li>
+      format source, sections, config</pre></div>
         
+      
+
+      
         
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>The <strong>title</strong> of the file is either the first heading in the prose, or the
+        <p>The <strong>title</strong> of the file is either the first heading in the prose, or the
 name of the source file.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      firstSection = _.find sections, <span class="hljs-function"><span class="hljs-params">(section)</span> -&gt;</span>
+        
+          <div class='highlight'><pre>      firstSection = _.find sections, <span class="hljs-function"><span class="hljs-params">(section)</span> -&gt;</span>
         section.docsText.length &gt; <span class="hljs-number">0</span>
       first = marked.lexer(firstSection.docsText)[<span class="hljs-number">0</span>] <span class="hljs-keyword">if</span> firstSection
       hasTitle = first <span class="hljs-keyword">and</span> first.type <span class="hljs-keyword">is</span> <span class="hljs-string">'heading'</span> <span class="hljs-keyword">and</span> first.depth <span class="hljs-keyword">is</span> <span class="hljs-number">1</span>
@@ -156,63 +147,39 @@ name of the source file.</p>
         sections: sections
       })
 
-      <span class="hljs-keyword">if</span> files.length <span class="hljs-keyword">then</span> nextFile() <span class="hljs-keyword">else</span> outputFiles()</pre></div></div>
-            
-        </li>
+      <span class="hljs-keyword">if</span> files.length <span class="hljs-keyword">then</span> nextFile() <span class="hljs-keyword">else</span> outputFiles()</pre></div>
         
+      
         
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>When we have finished all preparations (such as extracting a title for each file),
+        <p>When we have finished all preparations (such as extracting a title for each file),
 we produce all output files.</p>
 <p>We have collected all titles before outputting the individual files to give the
 template access to all sources’ titles for rendering, e.g. when the template
 needs to produce a TOC with each file.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function">  <span class="hljs-title">outputFiles</span> = -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function">  <span class="hljs-title">outputFiles</span> = -&gt;</span>
     <span class="hljs-keyword">for</span> info, i <span class="hljs-keyword">in</span> source_infos
       write info.source, i, source_infos, config
       outputCode info.source, info.sections, i, source_infos, config
-    complete()</pre></div></div>
-            
-        </li>
+    complete()</pre></div>
         
+      
         
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>Start processing all sources and producing the corresponding files for each:</p>
+        <p>Start processing all sources and producing the corresponding files for each:</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> files.length <span class="hljs-keyword">then</span> nextFile() <span class="hljs-keyword">else</span> outputFiles()</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>  <span class="hljs-keyword">if</span> files.length <span class="hljs-keyword">then</span> nextFile() <span class="hljs-keyword">else</span> outputFiles()</pre></div>
         
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>Given a string of source code, <strong>parse</strong> out each block of prose and the code that
+      
+        
+        <p>Given a string of source code, <strong>parse</strong> out each block of prose and the code that
 follows it — by detecting which is which, line by line — and then create an
 individual <strong>section</strong> for it. Each section is an object with <code>docsText</code> and
 <code>codeText</code> properties, and eventually <code>docsHtml</code> and <code>codeHtml</code> as well.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">parse</span> = <span class="hljs-params">(source, code, config = {})</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">parse</span> = <span class="hljs-params">(source, code, config = {})</span> -&gt;</span>
   lines    = code.split <span class="hljs-string">'\n'</span>
   sections = []
   lang     = getLanguage source, config
@@ -223,25 +190,17 @@ individual <strong>section</strong> for it. Each section is an object with <code
 
   <span class="hljs-title">save</span> = -&gt;</span>
     sections.push {docsText, codeText}
-    hasCode = docsText = codeText = <span class="hljs-string">''</span></pre></div></div>
-            
-        </li>
+    hasCode = docsText = codeText = <span class="hljs-string">''</span></pre></div>
         
+      
         
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <p>Our quick-and-dirty implementation of the literate programming style. Simply
+        <p>Our quick-and-dirty implementation of the literate programming style. Simply
 invert the prose and code relationship on a per-line basis, and then continue as
 normal below.</p>
 <p>Note: “Literate markdown” is an exception here as it’s basically the reverse.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> lang.literate <span class="hljs-keyword">and</span> lang.name != <span class="hljs-string">'markdown'</span>
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">if</span> lang.literate <span class="hljs-keyword">and</span> lang.name != <span class="hljs-string">'markdown'</span>
     isText = maybeCode = <span class="hljs-literal">yes</span>
     <span class="hljs-keyword">for</span> line, i <span class="hljs-keyword">in</span> lines
       lines[i] = <span class="hljs-keyword">if</span> maybeCode <span class="hljs-keyword">and</span> match = <span class="hljs-regexp">/^([ ]{4}|[ ]{0,3}\t)/</span>.exec line
@@ -251,197 +210,109 @@ normal below.</p>
         <span class="hljs-keyword">if</span> isText <span class="hljs-keyword">then</span> lang.symbol <span class="hljs-keyword">else</span> <span class="hljs-string">''</span>
       <span class="hljs-keyword">else</span>
         isText = <span class="hljs-literal">yes</span>
-        lang.symbol + <span class="hljs-string">' '</span> + line</pre></div></div>
-            
-        </li>
+        lang.symbol + <span class="hljs-string">' '</span> + line</pre></div>
         
+      
         
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p>Iterate over the source lines, and separate out single/block
+        <p>Iterate over the source lines, and separate out single/block
 comments from code chunks.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> lines
     <span class="hljs-keyword">if</span> in_block
       ++in_block
 
-    raw_line = line</pre></div></div>
-            
-        </li>
+    raw_line = line</pre></div>
         
+      
         
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <p>If we’re not in a block comment, and find a match for the start
+        <p>If we’re not in a block comment, and find a match for the start
 of one, eat the tokens, and note that we’re now in a block.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> config.blocks <span class="hljs-keyword">and</span> lang.blocks <span class="hljs-keyword">and</span> line.match(lang.commentEnter)
-      line = line.replace(lang.commentEnter, <span class="hljs-string">''</span>)</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> config.blocks <span class="hljs-keyword">and</span> lang.blocks <span class="hljs-keyword">and</span> line.match(lang.commentEnter)
+      line = line.replace(lang.commentEnter, <span class="hljs-string">''</span>)</pre></div>
         
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>Make sure this is a comment that we actually want to process; if not, treat it as code</p>
+      
+        
+        <p>Make sure this is a comment that we actually want to process; if not, treat it as code</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      in_block = <span class="hljs-number">1</span>
+        
+          <div class='highlight'><pre>      in_block = <span class="hljs-number">1</span>
       <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
-        ignore_this_block = <span class="hljs-number">1</span></pre></div></div>
-            
-        </li>
+        ignore_this_block = <span class="hljs-number">1</span></pre></div>
         
+      
         
-        <li id="section-10">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
-              </div>
-              <p>Process the line, marking it as docs if we’re in a block comment,
+        <p>Process the line, marking it as docs if we’re in a block comment,
 or we find a single-line comment marker.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    single = (<span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> lang.commentMatcher <span class="hljs-keyword">and</span> line.match(lang.commentMatcher) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> line.match(lang.commentFilter))</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    single = (<span class="hljs-keyword">not</span> in_block <span class="hljs-keyword">and</span> lang.commentMatcher <span class="hljs-keyword">and</span> line.match(lang.commentMatcher) <span class="hljs-keyword">and</span> <span class="hljs-keyword">not</span> line.match(lang.commentFilter))</pre></div>
         
-        <li id="section-11">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
-              </div>
-              <p>If there’s a single comment, and we’re not in a block, eat the
+      
+        
+        <p>If there’s a single comment, and we’re not in a block, eat the
 comment token.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> single
-      line = line.replace(lang.commentMatcher, <span class="hljs-string">''</span>)</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> single
+      line = line.replace(lang.commentMatcher, <span class="hljs-string">''</span>)</pre></div>
         
-        <li id="section-12">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
-              </div>
-              <p>Make sure this is a comment that we actually want to process; if not, treat it as code</p>
+      
+        
+        <p>Make sure this is a comment that we actually want to process; if not, treat it as code</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
-        ignore_this_block = <span class="hljs-number">1</span></pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>      <span class="hljs-keyword">if</span> lang.commentIgnore <span class="hljs-keyword">and</span> line.match(lang.commentIgnore)
+        ignore_this_block = <span class="hljs-number">1</span></pre></div>
         
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
-              <p>Prepare the line further when it is (part of) a comment line.</p>
+      
+        
+        <p>Prepare the line further when it is (part of) a comment line.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> in_block <span class="hljs-keyword">or</span> single</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> in_block <span class="hljs-keyword">or</span> single</pre></div>
         
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>If we’re in a block comment and we find the end of it in the line, eat
+      
+        
+        <p>If we’re in a block comment and we find the end of it in the line, eat
 the end token, and note that we’re no longer in the block.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> in_block <span class="hljs-keyword">and</span> line.match(lang.commentExit)
+        
+          <div class='highlight'><pre>      <span class="hljs-keyword">if</span> in_block <span class="hljs-keyword">and</span> line.match(lang.commentExit)
         line = line.replace(lang.commentExit, <span class="hljs-string">''</span>)
-        in_block = <span class="hljs-number">-1</span></pre></div></div>
-            
-        </li>
+        in_block = <span class="hljs-number">-1</span></pre></div>
         
+      
         
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <p>If we’re in a block comment and are processing comment line 2 or further, eat the
+        <p>If we’re in a block comment and are processing comment line 2 or further, eat the
 optional comment prefix (for C style comments, that would generally be
 a single ‘*’, for example).</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> in_block &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> lang.commentNext
-        line = line.replace(lang.commentNext, <span class="hljs-string">''</span>);</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>      <span class="hljs-keyword">if</span> in_block &gt; <span class="hljs-number">1</span> <span class="hljs-keyword">and</span> lang.commentNext
+        line = line.replace(lang.commentNext, <span class="hljs-string">''</span>);</pre></div>
         
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
-              </div>
-              <p>If we happen upon a JavaDoc <code>@param</code> parameter, then process that item.</p>
+      
+        
+        <p>If we happen upon a JavaDoc <code>@param</code> parameter, then process that item.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> lang.commentParam
+        
+          <div class='highlight'><pre>      <span class="hljs-keyword">if</span> lang.commentParam
         param = line.match(lang.commentParam);
         <span class="hljs-keyword">if</span> param
           line = line.replace(param[<span class="hljs-number">0</span>], <span class="hljs-string">'\n'</span> + <span class="hljs-string">'&lt;b&gt;'</span> + param[<span class="hljs-number">1</span>] + <span class="hljs-string">'&lt;/b&gt;'</span>);
 
-    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> ignore_this_block <span class="hljs-keyword">and</span> (in_block <span class="hljs-keyword">or</span> single)</pre></div></div>
-            
-        </li>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> ignore_this_block <span class="hljs-keyword">and</span> (in_block <span class="hljs-keyword">or</span> single)</pre></div>
         
+      
         
-        <li id="section-17">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
-              </div>
-              <p>If we have code text, and we’re entering a comment, store off
+        <p>If we have code text, and we’re entering a comment, store off
 the current docs and code, then start a new section.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      save() <span class="hljs-keyword">if</span> hasCode
+        
+          <div class='highlight'><pre>      save() <span class="hljs-keyword">if</span> hasCode
 
       docsText += line + <span class="hljs-string">'\n'</span>
       save() <span class="hljs-keyword">if</span> <span class="hljs-regexp">/^(---+|===+)$/</span>.test line <span class="hljs-keyword">or</span> in_block == <span class="hljs-number">-1</span>
@@ -453,109 +324,61 @@ the current docs and code, then start a new section.</p>
         <span class="hljs-keyword">while</span> oldLen != line.length
           oldLen = line.length
           line = line.replace(<span class="hljs-regexp">/^(\x20*)\t/</span>, <span class="hljs-string">'$1'</span> + config.indent)
-      codeText += line + <span class="hljs-string">'\n'</span></pre></div></div>
-            
-        </li>
+      codeText += line + <span class="hljs-string">'\n'</span></pre></div>
         
+      
         
-        <li id="section-18">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
-              </div>
-              <p>Reset <code>in_block</code> when we have reached the end of the comment block.</p>
+        <p>Reset <code>in_block</code> when we have reached the end of the comment block.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> in_block == <span class="hljs-number">-1</span>
-      in_block = <span class="hljs-number">0</span></pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> in_block == <span class="hljs-number">-1</span>
+      in_block = <span class="hljs-number">0</span></pre></div>
         
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
-              </div>
-              <p>Reset <code>ignore_this_block</code> when we have reached the end of the comment block or single comment line.</p>
+      
+        
+        <p>Reset <code>ignore_this_block</code> when we have reached the end of the comment block or single comment line.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> in_block
-      ignore_this_block = <span class="hljs-number">0</span></pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> in_block
+      ignore_this_block = <span class="hljs-number">0</span></pre></div>
         
-        <li id="section-20">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
-              </div>
-              <p>Save the final section, if any, and return the sections array.</p>
+      
+        
+        <p>Save the final section, if any, and return the sections array.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  save()
+        
+          <div class='highlight'><pre>  save()
 
-  sections</pre></div></div>
-            
-        </li>
+  sections</pre></div>
         
+      
         
-        <li id="section-21">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
-              </div>
-              <p>To <strong>format</strong> and highlight the now-parsed sections of code, we use <strong>Highlight.js</strong>
+        <p>To <strong>format</strong> and highlight the now-parsed sections of code, we use <strong>Highlight.js</strong>
 over stdio, and run the text of their corresponding comments through
 <strong>Markdown</strong>, using <a href="https://github.com/chjj/marked">Marked</a>.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">format</span> = <span class="hljs-params">(source, sections, config)</span> -&gt;</span>
-  language = getLanguage source, config</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">format</span> = <span class="hljs-params">(source, sections, config)</span> -&gt;</span>
+  language = getLanguage source, config</pre></div>
         
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>Pass any user defined options to Marked if specified via command line option,
+      
+        
+        <p>Pass any user defined options to Marked if specified via command line option,
 otherwise revert use the default configuration.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  markedOptions = config.marked_options
+        
+          <div class='highlight'><pre>  markedOptions = config.marked_options
 
-  marked.setOptions markedOptions</pre></div></div>
-            
-        </li>
+  marked.setOptions markedOptions</pre></div>
         
+      
         
-        <li id="section-23">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
-              </div>
-              <p>Tell Marked how to highlight code blocks within comments, treating that code
+        <p>Tell Marked how to highlight code blocks within comments, treating that code
 as either the language specified in the code block or the language of the file
 if not specified.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  marked.setOptions {
+        
+          <div class='highlight'><pre>  marked.setOptions {
     highlight: <span class="hljs-function"><span class="hljs-params">(code, lang)</span> -&gt;</span>
       lang <span class="hljs-keyword">or</span>= language.name
 
@@ -564,18 +387,11 @@ if not specified.</p>
       <span class="hljs-keyword">else</span>
         <span class="hljs-built_in">console</span>.warn <span class="hljs-string">"docco: couldn't highlight code block with unknown language '<span class="hljs-subst">#{lang}</span>' in <span class="hljs-subst">#{source}</span>"</span>
         code
-  }</pre></div></div>
-            
-        </li>
+  }</pre></div>
         
+      
         
-        <li id="section-24">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
-              </div>
-              <p>Also instruct Marked to run a preliminary scan of all the chunks first, where we want to
+        <p>Also instruct Marked to run a preliminary scan of all the chunks first, where we want to
 collect all link references. Only in the second run will we then require Marked to produce
 the final HTML rendered output.</p>
 <p>We have to execute this 2-phase process to ensure that any input which includes MarkDown
@@ -583,32 +399,23 @@ link references is processed properly: without the initial scan any link referen
 later (near the end of the input document) will be unknown to document chunks near the top
 of the input document.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  marked.setOptions {
+        
+          <div class='highlight'><pre>  marked.setOptions {
     linksCollector: {}
     execPrepPhaseOnly: <span class="hljs-literal">true</span>
-  }</pre></div></div>
-            
-        </li>
+  }</pre></div>
         
+      
         
-        <li id="section-25">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
-              </div>
-              <p>Process each chunk (phase 1):</p>
+        <p>Process each chunk (phase 1):</p>
 <ul>
 <li>both the code and text blocks are stripped of trailing empty lines</li>
 <li>the code block is marked up by highlighted to show a nice HTML rendition of the code</li>
 <li>the text block is fed to Marked for an initial scan</li>
 </ul>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">for</span> section, i <span class="hljs-keyword">in</span> sections
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">for</span> section, i <span class="hljs-keyword">in</span> sections
     <span class="hljs-keyword">if</span> language.name == <span class="hljs-string">'markdown'</span>
       <span class="hljs-keyword">if</span> language.literate
         code = section.codeText
@@ -636,25 +443,17 @@ of the input document.</p>
       section.codeHtml = <span class="hljs-string">"&lt;div class='highlight'&gt;&lt;pre&gt;<span class="hljs-subst">#{code}</span>&lt;/pre&gt;&lt;/div&gt;"</span>
       doc = section.docsText
       section.docsText = doc = doc.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">''</span>)
-      marked(doc)</pre></div></div>
-            
-        </li>
+      marked(doc)</pre></div>
         
+      
         
-        <li id="section-26">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
-              </div>
-              <p>Process each chunk (phase 2):</p>
+        <p>Process each chunk (phase 2):</p>
 <ul>
 <li>the text block is fed to Marked to turn it into HTML</li>
 </ul>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  marked.setOptions {
+        
+          <div class='highlight'><pre>  marked.setOptions {
     execPrepPhaseOnly: <span class="hljs-literal">false</span>
   }
 
@@ -668,24 +467,16 @@ of the input document.</p>
         section.docsHtml = marked(code)
     <span class="hljs-keyword">else</span>
       doc = section.docsText
-      section.docsHtml = marked(doc)</pre></div></div>
-            
-        </li>
+      section.docsHtml = marked(doc)</pre></div>
         
+      
         
-        <li id="section-27">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
-              </div>
-              <p>Once all of the code has finished highlighting, we can <strong>write</strong> the resulting
+        <p>Once all of the code has finished highlighting, we can <strong>write</strong> the resulting
 documentation file by passing the completed HTML sections into the template,
 and rendering it to the specified output path.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">write</span> = <span class="hljs-params">(source, title_idx, source_infos, config)</span> -&gt;</span><span class="hljs-function">
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">write</span> = <span class="hljs-params">(source, title_idx, source_infos, config)</span> -&gt;</span><span class="hljs-function">
 
   <span class="hljs-title">destination</span> = <span class="hljs-params">(file)</span> -&gt;</span>
     make_destination config.output, config.separator, file, <span class="hljs-string">'.html'</span>, config
@@ -717,23 +508,15 @@ and rendering it to the specified output path.</p>
   <span class="hljs-built_in">console</span>.log <span class="hljs-string">"docco: <span class="hljs-subst">#{source}</span> -&gt; <span class="hljs-subst">#{destfile}</span>"</span>
   fs.mkdirsSync path.dirname(destfile)
   fs.writeFileSync destfile, html
-  source_infos[title_idx].destDocFile = destfile</pre></div></div>
-            
-        </li>
+  source_infos[title_idx].destDocFile = destfile</pre></div>
         
+      
         
-        <li id="section-28">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
-              </div>
-              <p>Print out the consolidated code sections parsed from the source file in to another
+        <p>Print out the consolidated code sections parsed from the source file in to another
 file. No documentation will be included in the new file.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">outputCode</span> = <span class="hljs-params">(source, sections, title_idx, source_infos, config)</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">outputCode</span> = <span class="hljs-params">(source, sections, title_idx, source_infos, config)</span> -&gt;</span>
   lang = getLanguage source, config
 
   <span class="hljs-keyword">if</span> config.source
@@ -745,44 +528,28 @@ file. No documentation will be included in the new file.</p>
     <span class="hljs-built_in">console</span>.log <span class="hljs-string">"docco: <span class="hljs-subst">#{source}</span> -&gt; <span class="hljs-subst">#{destfile}</span>"</span>
     fs.mkdirsSync path.dirname(destfile)
     fs.writeFileSync destfile, code
-    source_infos[title_idx].destCodeFile = destfile</pre></div></div>
-            
-        </li>
+    source_infos[title_idx].destCodeFile = destfile</pre></div>
         
+      
         
-        <li id="section-29">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
-              </div>
-              <h2 id="helper-functions">Helper Functions</h2>
+        <h2 id="helper-functions">Helper Functions</h2>
 <p>To help us produce decent file names and paths for all inputs, we define a few helper functions:</p>
 <p>It should not matter if we are running on Windows, Unix or some other platform: we unify all paths
 to a single UNIXy format which can be processed easily everywhere (Windows accepts both native and
 UNIX path separators).</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">normalize</span> = <span class="hljs-params">(path)</span> -&gt;</span>
-  path.replace(<span class="hljs-regexp">/[\\\/]/g</span>, <span class="hljs-string">'/'</span>)</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">normalize</span> = <span class="hljs-params">(path)</span> -&gt;</span>
+  path.replace(<span class="hljs-regexp">/[\\\/]/g</span>, <span class="hljs-string">'/'</span>)</pre></div>
         
-        <li id="section-30">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
-              </div>
-              <p>We construct a suitable filename/path for each document by prepending it with the specified
+      
+        
+        <p>We construct a suitable filename/path for each document by prepending it with the specified
 relative path while using the separator specified on the command line. (The default separator (‘-‘
 dash) is used to flatten the directory tree when we process a directory tree all at once.)</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">qualifiedName</span> = <span class="hljs-params">(file, separator, extension, config)</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">qualifiedName</span> = <span class="hljs-params">(file, separator, extension, config)</span> -&gt;</span>
   cwd = <span class="hljs-keyword">if</span> config <span class="hljs-keyword">and</span> config.cwd <span class="hljs-keyword">then</span> config.cwd <span class="hljs-keyword">else</span> process.cwd() 
   file = normalize(file)
   nameParts = path.dirname(file).replace(normalize(cwd), <span class="hljs-string">''</span>).split(<span class="hljs-string">'/'</span>)
@@ -792,24 +559,16 @@ dash) is used to flatten the directory tree when we process a directory tree all
   nameParts.join(separator) + extension<span class="hljs-function">
 
 <span class="hljs-title">make_destination</span> = <span class="hljs-params">(basepath, separator, file, extension, config)</span> -&gt;</span>
-  path.join basepath, qualifiedName(file, separator, extension, config)</pre></div></div>
-            
-        </li>
+  path.join basepath, qualifiedName(file, separator, extension, config)</pre></div>
         
+      
         
-        <li id="section-31">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
-              </div>
-              <h2 id="configuration">Configuration</h2>
+        <h2 id="configuration">Configuration</h2>
 <p>Default configuration <strong>options</strong>. All of these may be extended by
 user-specified options.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>defaults =
+        
+          <div class='highlight'><pre>defaults =
   sources:    []
   layout:     <span class="hljs-string">'parallel'</span>
   output:     <span class="hljs-string">'docs'</span>
@@ -835,62 +594,38 @@ user-specified options.</p>
   }
   ignore:     <span class="hljs-literal">false</span>
   tabSize:    <span class="hljs-literal">null</span>
-  indent:     <span class="hljs-literal">null</span></pre></div></div>
-            
-        </li>
+  indent:     <span class="hljs-literal">null</span></pre></div>
         
+      
         
-        <li id="section-32">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
-              </div>
-              <p><strong>Configure</strong> this particular run of Docco. We might use a passed-in external
+        <p><strong>Configure</strong> this particular run of Docco. We might use a passed-in external
 template, one of the built-in <strong>layouts</strong>, or an external <strong>layout</strong>. We only attempt to process
 source files for languages for which we have definitions.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">configure</span> = <span class="hljs-params">(options)</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">configure</span> = <span class="hljs-params">(options)</span> -&gt;</span>
   config = _.extend {}, defaults, _.pick(options, _.keys(defaults)...)
 
-  config.languages = buildMatchers config.languages</pre></div></div>
-            
-        </li>
+  config.languages = buildMatchers config.languages</pre></div>
         
+      
         
-        <li id="section-33">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
-              </div>
-              <p>Determine what the indent should be if the user has supplied a custom tab-size
+        <p>Determine what the indent should be if the user has supplied a custom tab-size
 on the command line.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> config.tabSize
-    config.indent = Array(parseInt(config.tabSize) + <span class="hljs-number">1</span>).join(<span class="hljs-string">' '</span>)</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>  <span class="hljs-keyword">if</span> config.tabSize
+    config.indent = Array(parseInt(config.tabSize) + <span class="hljs-number">1</span>).join(<span class="hljs-string">' '</span>)</pre></div>
         
-        <li id="section-34">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
-              </div>
-              <p>The user is able to override the layout file used with the <code>--template</code> parameter.
+      
+        
+        <p>The user is able to override the layout file used with the <code>--template</code> parameter.
 In this case, it is also necessary to explicitly specify a stylesheet file.
 These custom templates are compiled exactly like the predefined ones, but the <code>public</code> folder
 is only copied for the latter.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> options.template
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">if</span> options.template
     <span class="hljs-keyword">unless</span> options.css
       <span class="hljs-built_in">console</span>.warn <span class="hljs-string">"docco: no stylesheet file specified"</span>
     config.layout = <span class="hljs-literal">null</span>
@@ -898,25 +633,17 @@ is only copied for the latter.</p>
     dir = config.layout = <span class="hljs-keyword">if</span> fs.existsSync path.join __dirname, <span class="hljs-string">'resources'</span>, config.layout <span class="hljs-keyword">then</span> path.join __dirname, <span class="hljs-string">'resources'</span>, config.layout <span class="hljs-keyword">else</span> path.join process.cwd(), config.layout;
     config.public       = path.join dir, <span class="hljs-string">'public'</span> <span class="hljs-keyword">if</span> fs.existsSync path.join dir, <span class="hljs-string">'public'</span>
     config.template     = path.join dir, <span class="hljs-string">'docco.jst'</span>
-    config.css          = options.css <span class="hljs-keyword">or</span> path.join dir, <span class="hljs-string">'resources/parallel/docco.css'</span>
-  config.template = _.template fs.readFileSync(config.template).toString()</pre></div></div>
-            
-        </li>
+    config.css          = options.css <span class="hljs-keyword">or</span> path.join dir, <span class="hljs-string">'resources/custom/docco.css'</span>
+  config.template = _.template fs.readFileSync(config.template).toString()</pre></div>
         
+      
         
-        <li id="section-35">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
-              </div>
-              <p>When the user specifies custom Marked options in a (JSON-formatted) configuration file,
+        <p>When the user specifies custom Marked options in a (JSON-formatted) configuration file,
 mix those options which our defaults such that each default option remains active when it has
 not been explicitly overridden by the user.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">if</span> options.marked_options
+        
+          <div class='highlight'><pre>  <span class="hljs-keyword">if</span> options.marked_options
     config.marked_options = _.extend config.marked_options, JSON.parse fs.readFileSync(options.marked_options)
 
   <span class="hljs-keyword">if</span> options.args
@@ -926,149 +653,85 @@ not been explicitly overridden by the user.</p>
       lang
     ).sort()
 
-  config</pre></div></div>
-            
-        </li>
+  config</pre></div>
         
+      
         
-        <li id="section-36">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
-              </div>
-              <h2 id="helpers-initial-setup">Helpers &amp; Initial Setup</h2>
+        <h2 id="helpers-initial-setup">Helpers &amp; Initial Setup</h2>
 <p>Require our external dependencies.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>_           = <span class="hljs-built_in">require</span> <span class="hljs-string">'underscore'</span>
+        
+          <div class='highlight'><pre>_           = <span class="hljs-built_in">require</span> <span class="hljs-string">'underscore'</span>
 fs          = <span class="hljs-built_in">require</span> <span class="hljs-string">'fs-extra'</span>
 path        = <span class="hljs-built_in">require</span> <span class="hljs-string">'path'</span>
 marked      = <span class="hljs-built_in">require</span> <span class="hljs-string">'marked'</span>
 commander   = <span class="hljs-built_in">require</span> <span class="hljs-string">'commander'</span>
-highlightjs = <span class="hljs-built_in">require</span> <span class="hljs-string">'highlight.js'</span></pre></div></div>
-            
-        </li>
+highlightjs = <span class="hljs-built_in">require</span> <span class="hljs-string">'highlight.js'</span></pre></div>
         
+      
         
-        <li id="section-37">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
-              </div>
-              <p>Languages are stored in JSON in the file <code>resources/languages.json</code>.
+        <p>Languages are stored in JSON in the file <code>resources/languages.json</code>.
 Each item maps the file extension to the name of the language and the
 <code>symbol</code> that indicates a line comment. To add support for a new programming
 language to Docco, just add it to the file.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>languages = JSON.parse fs.readFileSync(path.join(__dirname, <span class="hljs-string">'resources'</span>, <span class="hljs-string">'languages.json'</span>))</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>languages = JSON.parse fs.readFileSync(path.join(__dirname, <span class="hljs-string">'resources'</span>, <span class="hljs-string">'languages.json'</span>))</pre></div>
         
-        <li id="section-38">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
-              </div>
-              <p>Build out the appropriate matchers and delimiters for each language.</p>
+      
+        
+        <p>Build out the appropriate matchers and delimiters for each language.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">buildMatchers</span> = <span class="hljs-params">(languages)</span> -&gt;</span>
-  <span class="hljs-keyword">for</span> ext, l <span class="hljs-keyword">of</span> languages</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">buildMatchers</span> = <span class="hljs-params">(languages)</span> -&gt;</span>
+  <span class="hljs-keyword">for</span> ext, l <span class="hljs-keyword">of</span> languages</pre></div>
         
-        <li id="section-39">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
-              </div>
-              <p>Does the line begin with a comment?</p>
+      
+        
+        <p>Does the line begin with a comment?</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> (l.symbol)
-      l.commentMatcher = <span class="hljs-regexp">///^\s*<span class="hljs-subst">#{l.symbol}</span>\s?///</span></pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> (l.symbol)
+      l.commentMatcher = <span class="hljs-regexp">///^\s*<span class="hljs-subst">#{l.symbol}</span>\s?///</span></pre></div>
         
-        <li id="section-40">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
-              </div>
-              <p>Support block comment parsing?</p>
+      
+        
+        <p>Support block comment parsing?</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">if</span> l.enter <span class="hljs-keyword">and</span> l.exit
+        
+          <div class='highlight'><pre>    <span class="hljs-keyword">if</span> l.enter <span class="hljs-keyword">and</span> l.exit
       l.blocks = <span class="hljs-literal">true</span>
       l.commentEnter = <span class="hljs-keyword">new</span> RegExp(l.enter)
       l.commentExit = <span class="hljs-keyword">new</span> RegExp(l.exit)
       <span class="hljs-keyword">if</span> (l.next)
         l.commentNext = <span class="hljs-keyword">new</span> RegExp(l.next)
     <span class="hljs-keyword">if</span> l.param
-      l.commentParam = <span class="hljs-keyword">new</span> RegExp(l.param)</pre></div></div>
-            
-        </li>
+      l.commentParam = <span class="hljs-keyword">new</span> RegExp(l.param)</pre></div>
         
+      
         
-        <li id="section-41">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
-              </div>
-              <p>Ignore <a href="http://en.wikipedia.org/wiki/Shebang_%28Unix%29">hashbangs</a> and interpolations…</p>
+        <p>Ignore <a href="http://en.wikipedia.org/wiki/Shebang_%28Unix%29">hashbangs</a> and interpolations…</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    l.commentFilter = <span class="hljs-regexp">/(^#![/</span>]|^\s*<span class="hljs-comment">#\{)/</span></pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>    l.commentFilter = <span class="hljs-regexp">/(^#![/</span>]|^\s*<span class="hljs-comment">#\{)/</span></pre></div>
         
-        <li id="section-42">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
-              </div>
-              <p>We ignore any comments which start with a colon ‘:’ - these will be included in the code as is.</p>
+      
+        
+        <p>We ignore any comments which start with a colon ‘:’ - these will be included in the code as is.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    l.commentIgnore = <span class="hljs-keyword">new</span> RegExp(<span class="hljs-regexp">/^:/</span>)
+        
+          <div class='highlight'><pre>    l.commentIgnore = <span class="hljs-keyword">new</span> RegExp(<span class="hljs-regexp">/^:/</span>)
 
   languages
-languages = buildMatchers languages</pre></div></div>
-            
-        </li>
+languages = buildMatchers languages</pre></div>
         
+      
         
-        <li id="section-43">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
-              </div>
-              <p>A function to get the current language we’re documenting, based on the
+        <p>A function to get the current language we’re documenting, based on the
 file extension. Detect and tag “literate” <code>.ext.md</code> variants.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">getLanguage</span> = <span class="hljs-params">(source, config)</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">getLanguage</span> = <span class="hljs-params">(source, config)</span> -&gt;</span>
   ext  = config.extension <span class="hljs-keyword">or</span> path.extname(source) <span class="hljs-keyword">or</span> path.basename(source)
   lang = config.languages?[ext] <span class="hljs-keyword">or</span> languages[ext] <span class="hljs-keyword">or</span> languages[<span class="hljs-string">'text'</span>]
   <span class="hljs-keyword">if</span> lang
@@ -1078,39 +741,23 @@ file extension. Detect and tag “literate” <code>.ext.md</code> variants.</p>
         lang = _.extend {}, codeLang, {literate: <span class="hljs-literal">yes</span>, source: <span class="hljs-string">''</span>}
     <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> lang.source
       lang.source = ext
-  lang</pre></div></div>
-            
-        </li>
+  lang</pre></div>
         
+      
         
-        <li id="section-44">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
-              </div>
-              <p>Keep it DRY. Extract the docco <strong>version</strong> from <code>package.json</code></p>
+        <p>Keep it DRY. Extract the docco <strong>version</strong> from <code>package.json</code></p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>version = JSON.parse(fs.readFileSync(path.join(__dirname, <span class="hljs-string">'package.json'</span>))).version</pre></div></div>
-            
-        </li>
         
+          <div class='highlight'><pre>version = JSON.parse(fs.readFileSync(path.join(__dirname, <span class="hljs-string">'package.json'</span>))).version</pre></div>
         
-        <li id="section-45">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
-              </div>
-              <h2 id="command-line-interface">Command Line Interface</h2>
+      
+        
+        <h2 id="command-line-interface">Command Line Interface</h2>
 <p>Finally, let’s define the interface to run Docco from the command line.
 Parse options using <a href="https://github.com/visionmedia/commander.js">Commander</a>.</p>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">run</span> = <span class="hljs-params">(args = process.argv)</span> -&gt;</span>
+        
+          <div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">run</span> = <span class="hljs-params">(args = process.argv)</span> -&gt;</span>
   c = defaults
   commander.version(version)
     .usage(<span class="hljs-string">'[options] files'</span>)
@@ -1132,26 +779,67 @@ Parse options using <a href="https://github.com/visionmedia/commander.js">Comman
   <span class="hljs-keyword">if</span> commander.args.length
     <span class="hljs-built_in">document</span> commander
   <span class="hljs-keyword">else</span>
-    <span class="hljs-built_in">console</span>.log commander.helpInformation()</pre></div></div>
-            
-        </li>
+    <span class="hljs-built_in">console</span>.log commander.helpInformation()</pre></div>
         
+      
         
-        <li id="section-46">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-46">&#182;</a>
-              </div>
-              <h2 id="public-api">Public API</h2>
+        <h2 id="public-api">Public API</h2>
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>Docco = <span class="hljs-built_in">module</span>.exports = {run, <span class="hljs-built_in">document</span>, parse, format, configure, version}</pre></div></div>
-            
-        </li>
         
-    </ul>
-  </div>
-</body>
+          <div class='highlight'><pre>Docco = <span class="hljs-built_in">module</span>.exports = {run, <span class="hljs-built_in">document</span>, parse, format, configure, version}</pre></div>
+        
+      
+    </div>
+
+    <script src="resources/custom/public/js/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+       function transliterate(word) {
+         var answer = "";
+         var a = {}
+
+         a["Ё"]="YO";a["Й"]="I";a["Ц"]="TS";a["У"]="U";a["К"]="K";a["Е"]="E";a["Н"]="N";a["Г"]="G";a["Ш"]="SH";a["Щ"]="SCH";a["З"]="Z";a["Х"]="H";a["Ъ"]="'";
+         a["ё"]="yo";a["й"]="i";a["ц"]="ts";a["у"]="u";a["к"]="k";a["е"]="e";a["н"]="n";a["г"]="g";a["ш"]="sh";a["щ"]="sch";a["з"]="z";a["х"]="h";a["ъ"]="'";
+         a["Ф"]="F";a["Ы"]="I";a["В"]="V";a["А"]="a";a["П"]="P";a["Р"]="R";a["О"]="O";a["Л"]="L";a["Д"]="D";a["Ж"]="ZH";a["Э"]="E";
+         a["ф"]="f";a["ы"]="i";a["в"]="v";a["а"]="a";a["п"]="p";a["р"]="r";a["о"]="o";a["л"]="l";a["д"]="d";a["ж"]="zh";a["э"]="e";
+         a["Я"]="Ya";a["Ч"]="CH";a["С"]="S";a["М"]="M";a["И"]="I";a["Т"]="T";a["Ь"]="'";a["Б"]="B";a["Ю"]="YU";
+         a["я"]="ya";a["ч"]="ch";a["с"]="s";a["м"]="m";a["и"]="i";a["т"]="t";a["ь"]="'";a["б"]="b";a["ю"]="yu";
+
+         for (i = 0; i < word.length; ++i) {
+           answer += a[word[i]] === undefined ? word[i] : a[word[i]];
+         }
+         return answer;
+       }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var headers = [].slice.call( document.querySelectorAll('h1') ).forEach(
+          function(head) {
+            var name = transliterate(head.textContent).replace(/\s/g, '_');
+
+            var tag_a = document.createElement('a');
+            tag_a.name = name;
+            tag_a.href = '#' + name;
+            tag_a.textContent = name;
+            tag_a.className = "anchor_link"
+            head.parentNode.insertBefore(tag_a, head);
+
+            var div_top = document.createElement('div');
+            div_top.className = "to_top_div";
+            var tag_top = document.createElement('a');
+            tag_top.href = "#top";
+            div_top.append(tag_top);
+            head.parentNode.insertBefore(div_top, head.nextSibling);
+
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.textContent = head.textContent;
+            a.href = "#" + name;
+            li.append(a);
+            document.querySelector('ul.nav').append(li);
+          }
+        );
+      });
+    </script>
+  </body>
 </html>

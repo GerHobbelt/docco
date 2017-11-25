@@ -7,7 +7,7 @@
 CAKE=node_modules/.bin/cake
 COFFEE=node_modules/.bin/coffee
 # linear | parallel | pretty | plain-markdown | classic | ivory
-TEMPLATE=parallel
+TEMPLATE=custom
 
 
 
