@@ -52,6 +52,7 @@
   ".litcoffee" : {"name" : "coffeescript", "symbol" : "#", "literate": true, "enter": "^\\s*#{3}(?!#)", "exit": "#{3}(?!#)\\s*$", "source": ".coffee" },
   ".ls": {"name" : "livescript", "symbol": "#"},
   ".lua": {"name": "lua", "symbol": "--"},
+  ".lualit": {"name": "lua", "symbol": "--", "literate": true},
   ".m": {"name" : "objectivec", "symbol": "//"},
   ".mak": { "name": "makefile", "symbol": "#" },
   ".markdown": {"name" : "markdown", "symbol" : "//"},
