@@ -1,0 +1,297 @@
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 16px/1 sans-serif;
+}
+
+a {
+  color: inherit;
+  word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  word-wrap: break-word;
+  text-transform: uppercase;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+tt,
+pre,
+code {
+  margin: 0;
+  padding: 0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font: 0.875em/1.5 Menlo, Monaco, Consolas, "Lucida Console", monospace;
+}
+
+.jumper {
+  max-width: 40rem;
+  font-size: 0.75em;
+  padding: 1rem 0.5rem;
+  box-sizing: border-box;
+}
+
+.jumper li {
+  display: block;
+}
+
+.jumper strong,
+.jumper a {
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+.jumper a {
+  text-decoration: none;
+}
+
+.jumper a:hover {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 1rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.content,
+.annotation {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.content {
+  color: #d3d3d3;
+  overflow-x: auto;
+  background: #2d2d2d;
+}
+
+.annotation {
+  max-width: 40rem;
+  position: relative;
+}
+
+.annotation h1 {
+  margin-bottom: 0.125rem;
+}
+
+.annotation p {
+  line-height: 1.25;
+}
+
+@media only screen and (max-width: 799px) {
+  .pilwrap {
+    display: none;
+  }
+
+  .highlight tt,
+  .highlight pre,
+  .highlight code {
+    white-space: pre;
+    word-wrap: normal;
+  }
+}
+
+@media only screen and (min-width: 400px) {
+  .jumper ul,
+  .jumper li {
+    display: inline-block;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .jumper {
+    width: 40%;
+    text-align: right;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .sections {
+    padding-top: 0.75rem;
+  }
+
+  .sections::before {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 60%;
+    z-index: -1;
+    content: "";
+    display: block;
+    position: fixed;
+    background: #2d2d2d;
+  }
+
+  .section {
+    overflow: hidden;
+  }
+
+  .content,
+  .annotation {
+    float: left;
+    vertical-align: top;
+    display: inline-block;
+  }
+
+  .content {
+    width: 60%;
+    overflow: visible;
+  }
+
+  .annotation {
+    width: 40%;
+    text-align: right;
+    padding-right: 2rem;
+  }
+
+  .pilwrap {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 2rem;
+    position: absolute;
+  }
+
+  .pilcrow {
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    padding: 1rem;
+    display: block;
+    position: absolute;
+    text-decoration: none;
+    transform: translate(-50%, -50%);
+  }
+
+  .annotation:hover
+  .pilcrow {
+    opacity: 1;
+  }
+}
+
+/*
+
+    Name:       Base16 Eighties Dark
+    Author:     Chris Kempson (http://chriskempson.com)
+
+    highlight.js v8.0 template by Jan T. Sott (https://github.com/idleberg/base16-highlight.js)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+/* Eighties Comment */
+.hljs-comment,
+.hljs-title {
+  color: #a09f93;
+}
+
+/* Eighties Red */
+.hljs-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-regexp,
+.ruby .hljs-constant,
+.xml .hljs-tag .hljs-title,
+.xml .hljs-pi,
+.xml .hljs-doctype,
+.html .hljs-doctype,
+.css .hljs-id,
+.css .hljs-class,
+.css .hljs-pseudo {
+  color: #f2777a;
+}
+
+/* Eighties Orange */
+.hljs-number,
+.hljs-preprocessor,
+.hljs-built_in,
+.hljs-literal,
+.hljs-params,
+.hljs-constant {
+  color: #f99157;
+}
+
+/* Eighties Yellow */
+.ruby .hljs-class .hljs-title,
+.css .hljs-rules .hljs-attribute {
+  color: #ffcc66;
+}
+
+/* Eighties Green */
+.hljs-string,
+.hljs-value,
+.hljs-inheritance,
+.hljs-header,
+.ruby .hljs-symbol,
+.xml .hljs-cdata {
+  color: #99cc99;
+}
+
+/* Eighties Aqua */
+.css .hljs-hexcolor {
+  color:: #66cccc;
+}
+
+/* Eighties Blue */
+.hljs-function,
+.python .hljs-decorator,
+.python .hljs-title,
+.ruby .hljs-function .hljs-title,
+.ruby .hljs-title .hljs-keyword,
+.perl .hljs-sub,
+.javascript .hljs-title,
+.coffeescript .hljs-title {
+  color: #6699cc;
+}
+
+/* Eighties Purple */
+.hljs-keyword,
+.javascript .hljs-function {
+  color: #cc99cc;
+}
+
+.hljs {
+  color: #d3d0c8;
+  display: block;
+  padding: 0.5em;
+  background: #2d2d2d;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+  opacity: 0.5;
+}
