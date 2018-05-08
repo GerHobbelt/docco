@@ -386,7 +386,7 @@ and rendering it to the specified output path.
     write = (source, title_idx, source_infos, config) ->
 
       destination = (file) ->
-        make_destination config.output, config.separator, file, '.html', config
+        make_destination config.output, config.separator, file, '.html', config.keepext, config
 
       destfile = destination source
 
@@ -424,7 +424,7 @@ file. No documentation will be included in the new file.
       lang = getLanguage source, config
 
       if config.source
-        destfile = make_destination config.source, config.separator, source, lang.source, config
+        destfile = make_destination config.source, config.separator, source, lang.source, false, config
       
         code = _.pluck(sections, 'codeText').join '\n'
         code = code.trim().replace /(\n{2,})/g, '\n\n'
@@ -451,17 +451,17 @@ We construct a suitable filename/path for each document by prepending it with th
 relative path while using the separator specified on the command line. (The default separator ('-'
 dash) is used to flatten the directory tree when we process a directory tree all at once.)
 
-    qualifiedName = (file, separator, extension, config) ->
+    qualifiedName = (file, separator, extension, keep_ext, config) ->
       cwd = if config and config.cwd then config.cwd else process.cwd() 
       file = normalize(file)
       nameParts = path.dirname(file).replace(normalize(cwd), '').split('/')
       nameParts.shift() while nameParts[0] is '' or nameParts[0] is '.' or nameParts[0] is '..'
-      nameParts.push(path.basename(file, path.extname(file)))
+      nameParts.push(if keep_ext then path.basename(file) else path.basename(file, path.extname(file)))
 
       nameParts.join(separator) + extension
 
-    make_destination = (basepath, separator, file, extension, config) ->
-      path.join basepath, qualifiedName(file, separator, extension, config)
+    make_destination = (basepath, separator, file, extension, keep_ext, config) ->
+      path.join basepath, qualifiedName(file, separator, extension, keep_ext, config)
 
 
 Configuration
@@ -495,6 +495,7 @@ user-specified options.
           code
       }
       ignore:     false
+      keepext:    false
       tabSize:    null
       indent:     null
 
@@ -634,6 +635,7 @@ Parse options using [Commander](https://github.com/visionmedia/commander.js).
         .option('-t, --template [file]',  'use a custom .jst template', c.template)
         .option('-b, --blocks',           'parse block comments where available', c.blocks)
         .option('-e, --extension [ext]',  'assume a file extension for all inputs', c.extension)
+        .option('-k, --keepext [file]',   'keep original file extension', c.keepext)
         .option('-s, --source [path]',    'output code in a given folder', c.source)
         .option('--cwd [path]',           'specify the Current Working Directory path for the purpose of generating qualified output filenames', c.cwd)
         .option('-x, --separator [sep]',  'the source path is included in the output filename, separated by this separator (default: "-")', c.separator)

@@ -36,6 +36,7 @@ Usage: docco [options] FILES
     -b, --blocks              parse block comments where available
     -m, --markdown            output markdown
     --marked [file]           use custom marked options
+    -k, --keepext [file]      keep original file extension
     -i, --ignore [file]       ignore unsupported languages
     -e, --extension [ext]     use the given file extension for all inputs
     -L, --languages [file]    use a custom languages.json

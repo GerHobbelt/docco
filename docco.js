@@ -261,7 +261,7 @@
   write = function(source, title_idx, source_infos, config) {
     var css, destfile, destination, html, relative;
     destination = function(file) {
-      return make_destination(config.output, config.separator, file, '.html', config);
+      return make_destination(config.output, config.separator, file, '.html', config.keepext, config);
     };
     destfile = destination(source);
     relative = function(srcfile) {
@@ -296,7 +296,7 @@
     var code, destfile, lang;
     lang = getLanguage(source, config);
     if (config.source) {
-      destfile = make_destination(config.source, config.separator, source, lang.source, config);
+      destfile = make_destination(config.source, config.separator, source, lang.source, false, config);
       code = _.pluck(sections, 'codeText').join('\n');
       code = code.trim().replace(/(\n{2,})/g, '\n\n');
       console.log("docco: " + source + " -> " + destfile);
@@ -310,7 +310,7 @@
     return path.replace(/[\\\/]/g, '/');
   };
 
-  qualifiedName = function(file, separator, extension, config) {
+  qualifiedName = function(file, separator, extension, keep_ext, config) {
     var cwd, nameParts;
     cwd = config && config.cwd ? config.cwd : process.cwd();
     file = normalize(file);
@@ -318,12 +318,12 @@
     while (nameParts[0] === '' || nameParts[0] === '.' || nameParts[0] === '..') {
       nameParts.shift();
     }
-    nameParts.push(path.basename(file, path.extname(file)));
+    nameParts.push(keep_ext ? path.basename(file) : path.basename(file, path.extname(file)));
     return nameParts.join(separator) + extension;
   };
 
-  make_destination = function(basepath, separator, file, extension, config) {
-    return path.join(basepath, qualifiedName(file, separator, extension, config));
+  make_destination = function(basepath, separator, file, extension, keep_ext, config) {
+    return path.join(basepath, qualifiedName(file, separator, extension, keep_ext, config));
   };
 
   defaults = {
@@ -352,6 +352,7 @@
       }
     },
     ignore: false,
+    keepext: false,
     tabSize: null,
     indent: null
   };
@@ -461,7 +462,7 @@
       args = process.argv;
     }
     c = defaults;
-    commander.version(version).usage('[options] files').option('-L, --languages [file]', 'use a custom languages.json', _.compose(JSON.parse, fs.readFileSync)).option('-l, --layout [name]', 'choose a layout (parallel, linear, pretty or classic) or external layout', c.layout).option('-o, --output [path]', 'output to a given folder', c.output).option('-c, --css [file]', 'use a custom css file', c.css).option('-t, --template [file]', 'use a custom .jst template', c.template).option('-b, --blocks', 'parse block comments where available', c.blocks).option('-e, --extension [ext]', 'assume a file extension for all inputs', c.extension).option('-s, --source [path]', 'output code in a given folder', c.source).option('--cwd [path]', 'specify the Current Working Directory path for the purpose of generating qualified output filenames', c.cwd).option('-x, --separator [sep]', 'the source path is included in the output filename, separated by this separator (default: "-")', c.separator).option('-m, --marked-options [file]', 'use custom Marked options', c.marked_options).option('-i, --ignore [file]', 'ignore unsupported languages', c.ignore).option('-T, --tab-size [size]', 'convert leading tabs to X spaces').parse(args).name = "docco";
+    commander.version(version).usage('[options] files').option('-L, --languages [file]', 'use a custom languages.json', _.compose(JSON.parse, fs.readFileSync)).option('-l, --layout [name]', 'choose a layout (parallel, linear, pretty or classic) or external layout', c.layout).option('-o, --output [path]', 'output to a given folder', c.output).option('-c, --css [file]', 'use a custom css file', c.css).option('-t, --template [file]', 'use a custom .jst template', c.template).option('-b, --blocks', 'parse block comments where available', c.blocks).option('-e, --extension [ext]', 'assume a file extension for all inputs', c.extension).option('-k, --keepext [file]', 'keep original file extension', c.keepext).option('-s, --source [path]', 'output code in a given folder', c.source).option('--cwd [path]', 'specify the Current Working Directory path for the purpose of generating qualified output filenames', c.cwd).option('-x, --separator [sep]', 'the source path is included in the output filename, separated by this separator (default: "-")', c.separator).option('-m, --marked-options [file]', 'use custom Marked options', c.marked_options).option('-i, --ignore [file]', 'ignore unsupported languages', c.ignore).option('-T, --tab-size [size]', 'convert leading tabs to X spaces').parse(args).name = "docco";
     if (commander.args.length) {
       return document(commander);
     } else {

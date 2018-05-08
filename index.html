@@ -688,7 +688,7 @@ and rendering it to the specified output path.</p>
             <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">write</span> = <span class="hljs-params">(source, title_idx, source_infos, config)</span> -&gt;</span><span class="hljs-function">
 
   <span class="hljs-title">destination</span> = <span class="hljs-params">(file)</span> -&gt;</span>
-    make_destination config.output, config.separator, file, <span class="hljs-string">'.html'</span>, config
+    make_destination config.output, config.separator, file, <span class="hljs-string">'.html'</span>, config.keepext, config
 
   destfile = destination source<span class="hljs-function">
 
@@ -714,7 +714,7 @@ and rendering it to the specified output path.</p>
     language: getLanguage source, config
   }
 
-  console.log "docco: #{source} -&gt; #{destfile}"
+  <span class="hljs-built_in">console</span>.log "docco: #{source} -&gt; #{destfile}"
   fs.mkdirsSync path.dirname(destfile)
   fs.writeFileSync destfile, html
   source_infos[title_idx].destDocFile = destfile</pre></div></div>
@@ -737,7 +737,7 @@ file. No documentation will be included in the new file.</p>
   lang = getLanguage source, config
 
   <span class="hljs-keyword">if</span> config.source
-    destfile = make_destination config.source, config.separator, source, lang.source, config
+    destfile = make_destination config.source, config.separator, source, lang.source, <span class="hljs-literal">false</span>, config
   
     code = _.pluck(sections, <span class="hljs-string">'codeText'</span>).join <span class="hljs-string">'\n'</span>
     code = code.trim().replace <span class="hljs-regexp">/(\n{2,})/g</span>, <span class="hljs-string">'\n\n'</span>
@@ -782,17 +782,17 @@ dash) is used to flatten the directory tree when we process a directory tree all
 
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">qualifiedName</span> = <span class="hljs-params">(file, separator, extension, config)</span> -&gt;</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-title">qualifiedName</span> = <span class="hljs-params">(file, separator, extension, keep_ext, config)</span> -&gt;</span>
   cwd = <span class="hljs-keyword">if</span> config <span class="hljs-keyword">and</span> config.cwd <span class="hljs-keyword">then</span> config.cwd <span class="hljs-keyword">else</span> process.cwd() 
   file = normalize(file)
   nameParts = path.dirname(file).replace(normalize(cwd), <span class="hljs-string">''</span>).split(<span class="hljs-string">'/'</span>)
   nameParts.shift() <span class="hljs-keyword">while</span> nameParts[<span class="hljs-number">0</span>] <span class="hljs-keyword">is</span> <span class="hljs-string">''</span> <span class="hljs-keyword">or</span> nameParts[<span class="hljs-number">0</span>] <span class="hljs-keyword">is</span> <span class="hljs-string">'.'</span> <span class="hljs-keyword">or</span> nameParts[<span class="hljs-number">0</span>] <span class="hljs-keyword">is</span> <span class="hljs-string">'..'</span>
-  nameParts.push(path.basename(file, path.extname(file)))
+  nameParts.push(<span class="hljs-keyword">if</span> keep_ext <span class="hljs-keyword">then</span> path.basename(file) <span class="hljs-keyword">else</span> path.basename(file, path.extname(file)))
 
   nameParts.join(separator) + extension<span class="hljs-function">
 
-<span class="hljs-title">make_destination</span> = <span class="hljs-params">(basepath, separator, file, extension, config)</span> -&gt;</span>
-  path.join basepath, qualifiedName(file, separator, extension, config)</pre></div></div>
+<span class="hljs-title">make_destination</span> = <span class="hljs-params">(basepath, separator, file, extension, keep_ext, config)</span> -&gt;</span>
+  path.join basepath, qualifiedName(file, separator, extension, keep_ext, config)</pre></div></div>
             
         </li>
         
@@ -834,6 +834,7 @@ user-specified options.</p>
       code
   }
   ignore:     <span class="hljs-literal">false</span>
+  keepext:    <span class="hljs-literal">false</span>
   tabSize:    <span class="hljs-literal">null</span>
   indent:     <span class="hljs-literal">null</span></pre></div></div>
             
@@ -1121,10 +1122,11 @@ Parse options using <a href="https://github.com/visionmedia/commander.js">Comman
     .option(<span class="hljs-string">'-t, --template [file]'</span>,  <span class="hljs-string">'use a custom .jst template'</span>, c.template)
     .option(<span class="hljs-string">'-b, --blocks'</span>,           <span class="hljs-string">'parse block comments where available'</span>, c.blocks)
     .option(<span class="hljs-string">'-e, --extension [ext]'</span>,  <span class="hljs-string">'assume a file extension for all inputs'</span>, c.extension)
+    .option(<span class="hljs-string">'-k, --keepext [file]'</span>,   <span class="hljs-string">'keep original file extension'</span>, c.keepext)
     .option(<span class="hljs-string">'-s, --source [path]'</span>,    <span class="hljs-string">'output code in a given folder'</span>, c.source)
     .option(<span class="hljs-string">'--cwd [path]'</span>,           <span class="hljs-string">'specify the Current Working Directory path for the purpose of generating qualified output filenames'</span>, c.cwd)
     .option(<span class="hljs-string">'-x, --separator [sep]'</span>,  <span class="hljs-string">'the source path is included in the output filename, separated by this separator (default: "-")'</span>, c.separator)
-    .option(<span class="hljs-string">'-m, --marked-options [file]'</span>,  <span class="hljs-string">'use custom Marked options'</span>, c.marked_options)
+    .option('-m, --marked-options [file]',  'use custom Marked options', c.marked_options)
     .option('-i, --ignore [file]',    'ignore unsupported languages', c.ignore)
     .option('-T, --tab-size [size]',      'convert leading tabs to X spaces')
     .parse(args)
