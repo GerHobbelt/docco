@@ -47,7 +47,9 @@ available as a gem. (**WARNING**: project seems currently broken and apparently 
 also by Mr. Tomayko. (**WARNING**: project seems currently broken and apparently abandoned.)
 
 * If **Python** is more your speed, take a look at
-[Nick Fitzgerald](http://github.com/fitzgen)'s [Pycco](https://pycco-docs.github.io/pycco/).
+[Pycco](https://pycco-docs.github.io/pycco/), originally developed by
+[Nick Fitzgerald](http://github.com/fitzgen) and now maintained by
+the [pycco-docs](https://github.com/pycco-docs) community.
 
 * For **Clojure** fans, [Fogus](http://blog.fogus.me/)'s
 [Marginalia](http://fogus.me/fun/marginalia/) is a bit of a departure from
