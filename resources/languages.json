@@ -99,6 +99,7 @@
   ".vert": {"name": "glsl", "symbol": "//"},
   ".vhdl": {"name": "vhdl", "symbol": "--"},
   ".vim": {"name": "vim", "symbol": "\""},
+  ".vue": {"name": "vuejs", "symbol": "//"},
   ".wsc": {"name": "vbscript", "symbol": "'"},
   ".wsf": {"name": "vbscript", "symbol": "'"},
   ".yaml": {"name" : "yaml", "symbol" : "#"},
