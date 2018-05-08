@@ -556,7 +556,7 @@ Require our external dependencies.
     path        = require 'path'
     marked      = require 'marked'
     commander   = require 'commander'
-    highlightjs = require 'highlight.js'
+    highlightjs = require '@gerhobbelt/highlight.js'
 
 Languages are stored in JSON in the file `resources/languages.json`.
 Each item maps the file extension to the name of the language and the

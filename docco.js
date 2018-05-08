@@ -403,7 +403,7 @@
 
   commander = require('commander');
 
-  highlightjs = require('highlight.js');
+  highlightjs = require('@gerhobbelt/highlight.js');
 
   languages = JSON.parse(fs.readFileSync(path.join(__dirname, 'resources', 'languages.json')));
 

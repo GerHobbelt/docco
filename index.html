@@ -635,7 +635,7 @@ of the input document.</p>
 
       section.codeHtml = <span class="hljs-string">"&lt;div class='highlight'&gt;&lt;pre&gt;<span class="hljs-subst">#{code}</span>&lt;/pre&gt;&lt;/div&gt;"</span>
       doc = section.docsText
-      section.docsText = doc = doc.replace(<span class="hljs-regexp">/\s+$/</span>, <span class="hljs-string">''</span>)
+      section.docsText = doc = doc.replace(<span class="hljs-regexp">/\s+$/</span>, '')
       marked(doc)</pre></div></div>
             
         </li>
@@ -714,7 +714,7 @@ and rendering it to the specified output path.</p>
     language: getLanguage source, config
   }
 
-  <span class="hljs-built_in">console</span>.log <span class="hljs-string">"docco: <span class="hljs-subst">#{source}</span> -&gt; <span class="hljs-subst">#{destfile}</span>"</span>
+  console.log "docco: #{source} -&gt; #{destfile}"
   fs.mkdirsSync path.dirname(destfile)
   fs.writeFileSync destfile, html
   source_infos[title_idx].destDocFile = destfile</pre></div></div>
@@ -829,8 +829,8 @@ user-specified options.</p>
     sanitize: <span class="hljs-literal">false</span>,
     smartLists: <span class="hljs-literal">true</span>,
     smartypants: <span class="hljs-literal">yes</span>,
-    langPrefix: <span class="hljs-string">'language-'</span>,
-    highlight: <span class="hljs-function"><span class="hljs-params">(code, lang)</span> -&gt;</span>
+    langPrefix: 'language-',
+    highlight: (code, lang) -&gt;
       code
   }
   ignore:     <span class="hljs-literal">false</span>
@@ -947,7 +947,7 @@ fs          = <span class="hljs-built_in">require</span> <span class="hljs-strin
 path        = <span class="hljs-built_in">require</span> <span class="hljs-string">'path'</span>
 marked      = <span class="hljs-built_in">require</span> <span class="hljs-string">'marked'</span>
 commander   = <span class="hljs-built_in">require</span> <span class="hljs-string">'commander'</span>
-highlightjs = <span class="hljs-built_in">require</span> <span class="hljs-string">'highlight.js'</span></pre></div></div>
+highlightjs = <span class="hljs-built_in">require</span> <span class="hljs-string">'@gerhobbelt/highlight.js'</span></pre></div></div>
             
         </li>
         
@@ -1125,10 +1125,10 @@ Parse options using <a href="https://github.com/visionmedia/commander.js">Comman
     .option(<span class="hljs-string">'--cwd [path]'</span>,           <span class="hljs-string">'specify the Current Working Directory path for the purpose of generating qualified output filenames'</span>, c.cwd)
     .option(<span class="hljs-string">'-x, --separator [sep]'</span>,  <span class="hljs-string">'the source path is included in the output filename, separated by this separator (default: "-")'</span>, c.separator)
     .option(<span class="hljs-string">'-m, --marked-options [file]'</span>,  <span class="hljs-string">'use custom Marked options'</span>, c.marked_options)
-    .option(<span class="hljs-string">'-i, --ignore [file]'</span>,    <span class="hljs-string">'ignore unsupported languages'</span>, c.ignore)
-    .option(<span class="hljs-string">'-T, --tab-size [size]'</span>,      <span class="hljs-string">'convert leading tabs to X spaces'</span>)
+    .option('-i, --ignore [file]',    'ignore unsupported languages', c.ignore)
+    .option('-T, --tab-size [size]',      'convert leading tabs to X spaces')
     .parse(args)
-    .name = <span class="hljs-string">"docco"</span>
+    .name = "docco"
   <span class="hljs-keyword">if</span> commander.args.length
     <span class="hljs-built_in">document</span> commander
   <span class="hljs-keyword">else</span>
